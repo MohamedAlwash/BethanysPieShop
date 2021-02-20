@@ -2,9 +2,9 @@
 using BethanysPieShop.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BethanysPieShop.Controller
+namespace BethanysPieShop.Controllers
 {
-    public class PieController : ControllerBase
+    public class PieController : Controller
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IPieRepository _pieRepository;
@@ -15,13 +15,13 @@ namespace BethanysPieShop.Controller
             _categoryRepository = categoryRepository;
         }
 
-        public ViewResult List()
+        public IActionResult List()
         {
             PiesListViewModel piesListViewModel = new PiesListViewModel();
             piesListViewModel.Pies = _pieRepository.AllPies;
 
             piesListViewModel.CurrentCategory = "Cheese cakes";
-            return view(piesListViewModel);
+            return View(piesListViewModel);
         }
     }
 }
